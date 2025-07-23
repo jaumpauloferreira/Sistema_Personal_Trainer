@@ -1,0 +1,57 @@
+/* src/Paginas/Home.css */
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+.hero {
+  position: relative;
+  height: 100vh; /* ocupa 100% da altura da viewport */
+  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+}
+
+.icon-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem; /* espaçamento entre ícone e título */
+}
+
+.dumbbell-icon {
+  font-size: 5rem; /* tamanho do ícone */
+  color: #fff;
+}
+
+/* Título principal */
+.hero-content h1 {
+  color: #fff;
+  margin: 0 0 1rem;
+}
+
+/* Subtítulo */
+.hero-content p {
+  color: #f0f0f0;
+  margin-bottom: 2rem;
+}
+
+/* Botão principal */
+.hero-content .btn {
+  padding: 0.75rem 2rem;
+  font-size: 1.1rem;
+}
