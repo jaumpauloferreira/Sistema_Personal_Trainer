@@ -7,6 +7,9 @@
   background-color: #343a40;
   color: #fff;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .sidebar-header {
@@ -29,6 +32,11 @@
   gap: 10px;
   text-decoration: none;
   transition: background-color 0.3s ease;
+  background: none;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
 }
 
 .nav-link:hover {
@@ -44,3 +52,25 @@
   font-weight: bold;
 }
 
+/* Botão de sair */
+.logout-button {
+  all: unset;
+  padding: 10px 0;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 4px;
+}
+
+.logout-container {
+  padding-top: 20px;
+}

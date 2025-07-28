@@ -1,56 +1,75 @@
 // src/App.js
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { useAuth } from './contexts/AuthContext';
+import Login from './Paginas/Login';
+import Home from './Componentes/Home'; // ✅ Importação da sua Home
+import CadastroUsuario from './Paginas/CadastroUsuario';
 
-import Home from './Componentes/Home';
+
 import Navbar from './Componentes/Navbar';
 import Footer from './Componentes/Footer';
 
-import ListaAlunos from './Paginas/Alunos/ListaAlunos';
-import CadastroAluno from './Paginas/Alunos/CadastroAluno';
+import ListaAlunos     from './Paginas/Alunos/ListaAlunos';
+import CadastroAluno   from './Paginas/Alunos/CadastroAluno';
 import ListaAvaliacoes from './Paginas/Avaliacoes/ListaAvaliacoes';
-import NovaAvaliacao from './Paginas/Avaliacoes/NovaAvaliacao';
-import ListaFichas from './Paginas/Fichas/ListaFichas';
-import NovaFicha from './Paginas/Fichas/NovaFicha';
+import NovaAvaliacao   from './Paginas/Avaliacoes/NovaAvaliacao';
+import ListaFichas     from './Paginas/Fichas/ListaFichas';
+import NovaFicha       from './Paginas/Fichas/NovaFicha';
 import ListaExercicios from './Paginas/Exercicios/ListaExercicios';
-import NovoExercicio from './Paginas/Exercicios/NovoExercicio';
+import NovoExercicio   from './Paginas/Exercicios/NovoExercicio';
 
-function App() {
+function PrivateRoute({ children }) {
+  const { token } = useAuth();
+  return token ? children : <Navigate to="/login" replace />;
+}
+
+export default function App() {
+  const { token } = useAuth();
+  const location = useLocation();
+
+  const isLoginPage = location.pathname === '/login';
+
   return (
-    <Router>
-      <Navbar />
+    <>
+      {token && !isLoginPage && <Navbar />}
 
-      {/* 
-        marginLeft pra não ficar por baixo da sidebar,
-        paddingBottom para dar espaço ao rodapé fixo 
-      */}
-      <div style={{ marginLeft: '230px', padding: '20px', paddingBottom: '60px' }}>
+      <div style={{
+        marginLeft: token && !isLoginPage ? '230px' : 0,
+        padding: '20px',
+        paddingBottom: token && !isLoginPage ? '60px' : '20px'
+      }}>
         <Routes>
-          {/* Rota inicial para a Home */}
-          <Route path="/" element={<Home />} />
+          {/* Rota pública de login */}
+          <Route path="/login" element={<Login />} />
 
-          {/* Rotas principais */}
-          <Route path="/alunos" element={<ListaAlunos />} />
-          <Route path="/alunos/novo" element={<CadastroAluno />} />
+          {/* ✅ Agora exibe a Home se estiver logado */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <Home />
+              </PrivateRoute>
+            }
+          />
 
-          <Route path="/avaliacoes/:alunoId" element={<ListaAvaliacoes />} />
-          <Route path="/avaliacoes/novo/:alunoId" element={<NovaAvaliacao />} />
+          <Route path="/register" element={<CadastroUsuario />} />
 
-          <Route path="/fichas/:alunoId" element={<ListaFichas />} />
-          <Route path="/fichas/novo/:alunoId" element={<NovaFicha />} />
+          <Route path="/alunos" element={<PrivateRoute><ListaAlunos /></PrivateRoute>} />
+          <Route path="/alunos/novo" element={<PrivateRoute><CadastroAluno /></PrivateRoute>} />
+          <Route path="/avaliacoes/:alunoId" element={<PrivateRoute><ListaAvaliacoes /></PrivateRoute>} />
+          <Route path="/avaliacoes/novo/:alunoId" element={<PrivateRoute><NovaAvaliacao /></PrivateRoute>} />
+          <Route path="/fichas/:alunoId" element={<PrivateRoute><ListaFichas /></PrivateRoute>} />
+          <Route path="/fichas/novo/:alunoId" element={<PrivateRoute><NovaFicha /></PrivateRoute>} />
+          <Route path="/exercicios/:fichaId" element={<PrivateRoute><ListaExercicios /></PrivateRoute>} />
+          <Route path="/exercicios/novo/:fichaId" element={<PrivateRoute><NovoExercicio /></PrivateRoute>} />
 
-          <Route path="/exercicios/:fichaId" element={<ListaExercicios />} />
-          <Route path="/exercicios/novo/:fichaId" element={<NovoExercicio />} />
-
-          {/* Qualquer outra rota redireciona pra Home */}
+          {/* Rota fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>
 
-      {/* Rodapé fixo na parte de baixo */}
-      <Footer />
-    </Router>
+      {token && !isLoginPage && <Footer />}
+    </>
   );
 }
-
-export default App;
