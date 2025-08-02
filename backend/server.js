@@ -23,11 +23,14 @@ app.use('/auth', authRoutes);
 
 // Rotas protegidas
 app.use('/alunos', authMiddleware, alunoRoutes);
-app.use('/avaliacoes', authMiddleware, avaliacaoRoutes);
-app.use('/fichas',     authMiddleware, fichaRoutes);
-app.use('/exercicios', authMiddleware, exercicioRoutes);
+app.use('/avaliacoes',  avaliacaoRoutes);
+app.use('/fichas',      fichaRoutes);
+app.use('/exercicios',  exercicioRoutes);
 
-// Servir uploads estáticos
+// ✅ Servir fotos de alunos (acesso via /fotos/nome.jpg)
+app.use('/fotos', express.static(path.join(__dirname, 'uploads/fotos')));
+
+// (Opcional: manter o caminho completo para outras pastas, se quiser)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 // 404 para endpoints não mapeados

@@ -3,10 +3,9 @@ import React from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { useAuth } from './contexts/AuthContext';
 import Login from './Paginas/Login';
-import Home from './Componentes/Home'; // ✅ Importação da sua Home
+import Home from './Componentes/Home';
 import CadastroUsuario from './Paginas/CadastroUsuario';
-
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Componentes/Navbar';
 import Footer from './Componentes/Footer';
 
@@ -27,7 +26,6 @@ function PrivateRoute({ children }) {
 export default function App() {
   const { token } = useAuth();
   const location = useLocation();
-
   const isLoginPage = location.pathname === '/login';
 
   return (
@@ -43,7 +41,7 @@ export default function App() {
           {/* Rota pública de login */}
           <Route path="/login" element={<Login />} />
 
-          {/* ✅ Agora exibe a Home se estiver logado */}
+          {/* Página inicial */}
           <Route
             path="/"
             element={
@@ -53,18 +51,27 @@ export default function App() {
             }
           />
 
+          {/* Cadastro de usuário */}
           <Route path="/register" element={<CadastroUsuario />} />
 
+          {/* Alunos */}
           <Route path="/alunos" element={<PrivateRoute><ListaAlunos /></PrivateRoute>} />
           <Route path="/alunos/novo" element={<PrivateRoute><CadastroAluno /></PrivateRoute>} />
+          <Route path="/alunos/editar/:id" element={<PrivateRoute><CadastroAluno /></PrivateRoute>} />
+
+          {/* Avaliações */}
           <Route path="/avaliacoes/:alunoId" element={<PrivateRoute><ListaAvaliacoes /></PrivateRoute>} />
           <Route path="/avaliacoes/novo/:alunoId" element={<PrivateRoute><NovaAvaliacao /></PrivateRoute>} />
+
+          {/* Fichas */}
           <Route path="/fichas/:alunoId" element={<PrivateRoute><ListaFichas /></PrivateRoute>} />
           <Route path="/fichas/novo/:alunoId" element={<PrivateRoute><NovaFicha /></PrivateRoute>} />
+
+          {/* Exercícios */}
           <Route path="/exercicios/:fichaId" element={<PrivateRoute><ListaExercicios /></PrivateRoute>} />
           <Route path="/exercicios/novo/:fichaId" element={<PrivateRoute><NovoExercicio /></PrivateRoute>} />
 
-          {/* Rota fallback */}
+          {/* Fallback */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </div>

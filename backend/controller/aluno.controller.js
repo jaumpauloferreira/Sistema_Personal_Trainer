@@ -1,17 +1,15 @@
-// backend/controller/aluno.controller.js
-
 const Aluno = require('../model/entidades/aluno.model');
 
 exports.criarAluno = async (req, res) => {
-  // DEBUG: veja o que chegou do front e do multer
   console.log('>>> REQ.BODY:', req.body);
   console.log('>>> REQ.FILE:', req.file);
 
   try {
     const aluno = req.body;
+
     if (req.file) {
-      // grava no objeto o caminho onde o multer salvou a imagem
-      aluno.foto_path = req.file.path;
+      // Salva apenas o nome do arquivo (ex: 'imagem.jpeg')
+      aluno.foto_path = req.file.filename;
     }
 
     const result = await Aluno.criarAluno(aluno);
@@ -96,12 +94,13 @@ exports.uploadFoto = async (req, res) => {
   if (!req.file)
     return res.status(400).json({ error: 'Nenhuma foto enviada' });
   try {
-    const result = await Aluno.atualizarFoto(req.params.id, req.file.path);
+    // Salva apenas o nome do arquivo no banco
+    const result = await Aluno.atualizarFoto(req.params.id, req.file.filename);
     if (result.affectedRows === 0)
       return res.status(404).json({ error: 'Aluno não encontrado' });
     return res.status(200).json({
       message: 'Foto atualizada',
-      path: req.file.path
+      path: req.file.filename
     });
   } catch (err) {
     console.error('❌ ERRO uploadFoto:', err);

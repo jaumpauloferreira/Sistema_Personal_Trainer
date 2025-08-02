@@ -1,57 +1,54 @@
-/* src/Paginas/Home.css */
-
-html, body, #root {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-}
-
 .hero {
   position: relative;
-  height: 100vh; /* ocupa 100% da altura da viewport */
-  background: linear-gradient(135deg, #0d6efd 0%, #6610f2 100%);
-  display: flex;
-  align-items: center;
+  background-image: url('https://images.unsplash.com/photo-1571019613578-2b2e7bb02490?auto=format&fit=crop&w=1350&q=80');
+  background-size: cover;
+  background-position: center;
   overflow: hidden;
 }
 
 .hero-overlay {
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.hero-content {
-  position: relative;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
 
+.hero-content {
+  z-index: 2;
+}
+
 .icon-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 1rem; /* espaçamento entre ícone e título */
+  font-size: 4rem;
+  animation: fadeIn 1s ease-in-out;
 }
 
 .dumbbell-icon {
-  font-size: 5rem; /* tamanho do ícone */
-  color: #fff;
+  color: #f8f9fa;
 }
 
-/* Título principal */
-.hero-content h1 {
-  color: #fff;
-  margin: 0 0 1rem;
+.text-highlight {
+  color: #ffc107;
 }
 
-/* Subtítulo */
-.hero-content p {
-  color: #f0f0f0;
-  margin-bottom: 2rem;
+.hero h1, .hero p {
+  animation: fadeInUp 1.2s ease forwards;
 }
 
-/* Botão principal */
-.hero-content .btn {
-  padding: 0.75rem 2rem;
-  font-size: 1.1rem;
+@keyframes fadeInUp {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }

@@ -1,1 +1,18 @@
+# Ignorar node_modules
+backend/node_modules/
+frontend/node_modules/
+
+# Ignorar arquivos de variáveis de ambiente
+*.env
+
+# Ignorar pasta de uploads (fotos)
 backend/uploads/
+
+# Ignorar arquivos do VSCode
+.vscode/
+
+# Ignorar arquivos de sistema (Mac e outros)
+.DS_Store
+
+# Ignorar logs
+*.log

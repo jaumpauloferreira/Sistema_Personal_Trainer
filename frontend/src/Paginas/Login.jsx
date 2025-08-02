@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login as loginService } from '../services/authService';
 import { useAuth } from '../contexts/AuthContext';
-import './login.css'; // crie estilos se quiser
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -18,7 +17,6 @@ export default function Login() {
     try {
       const token = await loginService({ email, senha });
       signin(token);
-      // redireciona para a listagem de alunos
       navigate('/alunos');
     } catch (err) {
       setErro(err.response?.data?.error || 'Falha ao logar');
@@ -26,35 +24,43 @@ export default function Login() {
   };
 
   return (
-    <div className="login-container">
-      <h2>Login</h2>
-      {erro && <div className="login-error">{erro}</div>}
-      <form onSubmit={handleSubmit}>
-        <label>
-          E‑mail
-          <input
-            type="email"
-            value={email}
-            onChange={e => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label>
-          Senha
-          <input
-            type="password"
-            value={senha}
-            onChange={e => setSenha(e.target.value)}
-            required
-          />
-        </label>
-        <button type="submit">Entrar</button>
-      </form>
-      <p className="mt-3 text-center">
-  Ainda não tem conta? <a href="/register">Cadastre-se</a>
-</p>
+    <div className="container d-flex justify-content-center align-items-center" style={{ minHeight: '100vh' }}>
+      <div className="card shadow p-4" style={{ width: '100%', maxWidth: '400px' }}>
+        <h2 className="text-center mb-4">Login</h2>
+        {erro && <div className="alert alert-danger text-center">{erro}</div>}
 
+        <form onSubmit={handleSubmit}>
+          <div className="mb-3">
+            <label className="form-label">E‑mail</label>
+            <input
+              type="email"
+              className="form-control"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              required
+              placeholder="Digite seu e‑mail"
+            />
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Senha</label>
+            <input
+              type="password"
+              className="form-control"
+              value={senha}
+              onChange={e => setSenha(e.target.value)}
+              required
+              placeholder="Digite sua senha"
+            />
+          </div>
+
+          <button type="submit" className="btn btn-primary w-100">Entrar</button>
+        </form>
+
+        <p className="mt-3 text-center">
+          Ainda não tem conta? <a href="/register">Cadastre-se</a>
+        </p>
+      </div>
     </div>
-    
   );
 }
