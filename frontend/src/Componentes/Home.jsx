@@ -5,7 +5,7 @@ import '../Componentes/Home.css';
 
 export default function Home() {
   return (
-    <div className="hero vh-100 d-flex align-items-center justify-content-center">
+    <div className="hero">
       <div className="hero-overlay" />
 
       <div className="hero-content container text-center text-white position-relative">

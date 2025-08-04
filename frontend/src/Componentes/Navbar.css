@@ -74,3 +74,15 @@
 .logout-container {
   padding-top: 20px;
 }
+
+.sidebar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.sidebar-header h5 {
+  font-size: 1.1rem;
+  margin: 0;
+}

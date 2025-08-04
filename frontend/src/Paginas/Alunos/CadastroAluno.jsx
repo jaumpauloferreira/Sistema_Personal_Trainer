@@ -63,13 +63,13 @@ const CadastroAluno = () => {
   };
 
   return (
-    <div className="container mt-5" style={{ marginLeft: '-5px' }}>
+    <div
+      className="container mt-5 pb-5"
+      style={{ overflowY: 'auto', minHeight: '100vh' }}
+    >
       <div className="d-flex justify-content-between align-items-center mb-4">
         <h2>{id ? 'Editar Aluno' : 'Cadastro de Aluno'}</h2>
-        <button
-          className="btn btn-secondary"
-          onClick={() => navigate(-1)}
-        >
+        <button className="btn btn-secondary" onClick={() => navigate(-1)}>
           ← Voltar
         </button>
       </div>
@@ -81,17 +81,37 @@ const CadastroAluno = () => {
           <div className="row g-3">
             <div className="col-md-6">
               <label className="form-label">Nome</label>
-              <input type="text" className="form-control" name="nome" value={form.nome} onChange={handleChange} required />
+              <input
+                type="text"
+                className="form-control"
+                name="nome"
+                value={form.nome}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-md-6">
               <label className="form-label">Data de Nascimento</label>
-              <input type="date" className="form-control" name="data_nascimento" value={form.data_nascimento} onChange={handleChange} required />
+              <input
+                type="date"
+                className="form-control"
+                name="data_nascimento"
+                value={form.data_nascimento}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-md-4">
               <label className="form-label">Sexo</label>
-              <select className="form-select" name="sexo" value={form.sexo} onChange={handleChange} required>
+              <select
+                className="form-select"
+                name="sexo"
+                value={form.sexo}
+                onChange={handleChange}
+                required
+              >
                 <option value="M">Masculino</option>
                 <option value="F">Feminino</option>
                 <option value="O">Outro</option>
@@ -100,37 +120,85 @@ const CadastroAluno = () => {
 
             <div className="col-md-4">
               <label className="form-label">Altura (cm)</label>
-              <input type="number" className="form-control" name="altura" value={form.altura} onChange={handleChange} required />
+              <input
+                type="number"
+                className="form-control"
+                name="altura"
+                value={form.altura}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-md-4">
               <label className="form-label">Peso (kg)</label>
-              <input type="number" className="form-control" name="peso" value={form.peso} onChange={handleChange} required />
+              <input
+                type="number"
+                className="form-control"
+                name="peso"
+                value={form.peso}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-md-6">
               <label className="form-label">Telefone</label>
-              <input type="text" className="form-control" name="telefone" value={form.telefone} onChange={handleChange} required />
+              <input
+                type="text"
+                className="form-control"
+                name="telefone"
+                value={form.telefone}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-md-6">
               <label className="form-label">Email</label>
-              <input type="email" className="form-control" name="email" value={form.email} onChange={handleChange} required />
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-12">
               <label className="form-label">Objetivo</label>
-              <input type="text" className="form-control" name="objetivo" value={form.objetivo} onChange={handleChange} required />
+              <input
+                type="text"
+                className="form-control"
+                name="objetivo"
+                value={form.objetivo}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-md-6">
               <label className="form-label">Data de Início</label>
-              <input type="date" className="form-control" name="data_inicio" value={form.data_inicio} onChange={handleChange} required />
+              <input
+                type="date"
+                className="form-control"
+                name="data_inicio"
+                value={form.data_inicio}
+                onChange={handleChange}
+                required
+              />
             </div>
 
             <div className="col-md-6">
               <label className="form-label">Foto do Aluno</label>
-              <input type="file" className="form-control" name="foto" accept="image/*" onChange={handleFile} />
+              <input
+                type="file"
+                className="form-control"
+                name="foto"
+                accept="image/*"
+                onChange={handleFile}
+              />
             </div>
           </div>
 

@@ -17,7 +17,7 @@ export default function Login() {
     try {
       const token = await loginService({ email, senha });
       signin(token);
-      navigate('/alunos');
+      navigate('/home');
     } catch (err) {
       setErro(err.response?.data?.error || 'Falha ao logar');
     }

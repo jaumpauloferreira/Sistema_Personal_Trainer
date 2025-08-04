@@ -6,17 +6,19 @@ import Login from './Paginas/Login';
 import Home from './Componentes/Home';
 import CadastroUsuario from './Paginas/CadastroUsuario';
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Navbar from './Componentes/Navbar';
+import Topbar from './Componentes/Topbar';
 import Footer from './Componentes/Footer';
 
-import ListaAlunos     from './Paginas/Alunos/ListaAlunos';
-import CadastroAluno   from './Paginas/Alunos/CadastroAluno';
+import ListaAlunos from './Paginas/Alunos/ListaAlunos';
+import CadastroAluno from './Paginas/Alunos/CadastroAluno';
 import ListaAvaliacoes from './Paginas/Avaliacoes/ListaAvaliacoes';
-import NovaAvaliacao   from './Paginas/Avaliacoes/NovaAvaliacao';
-import ListaFichas     from './Paginas/Fichas/ListaFichas';
-import NovaFicha       from './Paginas/Fichas/NovaFicha';
+import NovaAvaliacao from './Paginas/Avaliacoes/NovaAvaliacao';
+import ListaFichas from './Paginas/Fichas/ListaFichas';
+import NovaFicha from './Paginas/Fichas/NovaFicha';
 import ListaExercicios from './Paginas/Exercicios/ListaExercicios';
-import NovoExercicio   from './Paginas/Exercicios/NovoExercicio';
+import NovoExercicio from './Paginas/Exercicios/NovoExercicio';
 
 function PrivateRoute({ children }) {
   const { token } = useAuth();
@@ -30,12 +32,18 @@ export default function App() {
 
   return (
     <>
+      {/* Sidebar */}
       {token && !isLoginPage && <Navbar />}
 
+      {/* Topbar */}
+      {token && !isLoginPage && <Topbar />}
+
+      {/* Conteúdo da Página */}
       <div style={{
-        marginLeft: token && !isLoginPage ? '230px' : 0,
+        marginLeft: token && !isLoginPage ? '200px' : 0,
+        marginTop: token && !isLoginPage ? '0px' : 0,
         padding: '20px',
-        paddingBottom: token && !isLoginPage ? '60px' : '20px'
+        paddingBottom: 0 // ✅ Removido espaço entre conteúdo e footer
       }}>
         <Routes>
           {/* Rota pública de login */}
@@ -76,6 +84,7 @@ export default function App() {
         </Routes>
       </div>
 
+      {/* Rodapé */}
       {token && !isLoginPage && <Footer />}
     </>
   );
