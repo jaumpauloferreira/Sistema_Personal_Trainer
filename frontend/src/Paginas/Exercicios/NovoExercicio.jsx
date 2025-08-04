@@ -32,7 +32,7 @@ const NovoExercicio = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2 className="mb-0">Novo Exercício</h2>
         <Link to={`/exercicios/${fichaId}`} className="btn btn-secondary">

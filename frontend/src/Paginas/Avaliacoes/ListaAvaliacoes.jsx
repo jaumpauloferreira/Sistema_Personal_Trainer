@@ -53,7 +53,7 @@ function ListaAvaliacoes() {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-5">
       {/* Título e botões */}
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2 className="mb-0">Avaliações do Aluno</h2>

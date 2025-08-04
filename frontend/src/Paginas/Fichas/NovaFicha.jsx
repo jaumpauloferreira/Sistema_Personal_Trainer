@@ -30,7 +30,7 @@ const NovaFicha = () => {
   };
 
   return (
-    <div className="container mt-4">
+    <div className="container mt-5">
       <div className="d-flex justify-content-between align-items-center mb-3">
         <h2 className="mb-0">Nova Ficha de Treino</h2>
         <Link to={`/fichas/${alunoId}`} className="btn btn-secondary">
